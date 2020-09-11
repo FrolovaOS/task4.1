@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "outputtopic",
+      "type": "java.lang.String",
+      "description": "Description for outputtopic."
+    },
+    {
+      "name": "inputtopic",
+      "type": "java.lang.String",
+      "description": "Description for inputtopic."
+    }
+  ] }
