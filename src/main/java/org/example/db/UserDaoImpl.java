@@ -23,14 +23,20 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
 
     @Override
     public void insert(User user) {
-
-        String sql = "INSERT INTO info " +
-                "(firstName, lastName ,age,timestamp) VALUES ( ?, ?, ?, ?)" ;
-        getJdbcTemplate().update(sql, new Object[]{
-                user.getFirstName(), user.getLastName(),user.getAge(),user.getTimestamp()
-        });
+            String sql = "INSERT INTO info " +
+                    "(id,firstName, lastName ,age,role) VALUES ( ?, ?, ?, ?,?)";
+            getJdbcTemplate().update(sql, new Object[]{
+                    user.getId(), user.getFirstName(), user.getLastName(), user.getAge(), user.getRole()
+            });
     }
 
+    public void insert1(User user) {
+        String sql = "INSERT INTO statics " +
+                "(idU,count,timestamp) VALUES ( ?, ?, ?)" ;
+        getJdbcTemplate().update(sql, new Object[]{
+                user.getId(),user.getCount(),user.getTimestamp()
+        });
+    }
     @Override
     public List<User> loadAllCustomer() {
         String sql = "SELECT * FROM info";
@@ -43,7 +49,7 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
             user.setFirstName((String)row.get("firstName"));
             user .setLastName((String) row.get("lastName"));
             user.setAge((Integer)row.get("age"));
-            user .setTimestamp((Long) row.get("timestamp"));
+            user.setRole((String)row.get("role"));
             result.add(user );
         }
 

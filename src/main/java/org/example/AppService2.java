@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class AppService implements MessageHandler {
+public class AppService2 implements MessageHandler {
     User user;
 
     @Autowired
@@ -19,7 +19,7 @@ public class AppService implements MessageHandler {
         JsonParser users = new JsonParser();
         this.user = users.getUser(message.getPayload().toString());
         if (user != null) {
-            userDao.insert(user);
+            userDao.insert1(user);
         }
     }
 }

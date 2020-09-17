@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserDao {
     void insert(User user);
+    void insert1(User user);
     List<User> loadAllCustomer();
 
 }
