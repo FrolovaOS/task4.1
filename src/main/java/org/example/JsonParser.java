@@ -12,8 +12,6 @@ public class JsonParser {
 
         try {
             user = objectMapper.readValue(response, User.class);
-
-
         } catch (NullPointerException e) {
             Logger log = Logger.getLogger(JsonParser.class.getName());
             log.info("Invalid dataaa");
@@ -24,7 +22,6 @@ public class JsonParser {
             log.info("Invalid dataaa");
             log.info(u.getMessage());
         }
-
         return  user;
     }
 

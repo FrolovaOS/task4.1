@@ -4,17 +4,17 @@ import org.example.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 @Repository
 public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @PostConstruct
     private void initialize(){
@@ -30,7 +30,7 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
             });
     }
 
-    public void insert1(User user) {
+    public void insertStatics(User user) {
         String sql = "INSERT INTO statics " +
                 "(idU,count,timestamp) VALUES ( ?, ?, ?)" ;
         getJdbcTemplate().update(sql, new Object[]{
@@ -40,12 +40,13 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
     @Override
     public List<User> loadAllCustomer() {
         String sql = "SELECT * FROM info";
+
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);
 
         List<User> result = new ArrayList<User>();
         for(Map<String, Object> row:rows){
             User user = new User();
-
+            user.setId((Integer)row.get("id"));
             user.setFirstName((String)row.get("firstName"));
             user .setLastName((String) row.get("lastName"));
             user.setAge((Integer)row.get("age"));

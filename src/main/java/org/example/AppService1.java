@@ -1,6 +1,7 @@
 package org.example;
 
-import org.example.db.UserDao;
+
+import org.example.db.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
@@ -9,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class AppService implements MessageHandler {
-    User user;
+public class AppService1 implements MessageHandler {
+    private User user;
 
     @Autowired
-    UserDao userDao;
+    private UserDaoImpl userDao;
 
     public void handleMessage(Message<?> message) throws MessagingException {
         JsonParser users = new JsonParser();
